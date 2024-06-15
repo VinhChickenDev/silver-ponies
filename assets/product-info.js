@@ -7,6 +7,10 @@ if (!customElements.get('product-info')) {
         this.input = this.querySelector('.quantity__input');
         this.currentVariant = this.querySelector('.product-variant-id');
         this.submitButton = this.querySelector('[type="submit"]');
+        this.readMoreButtons = this.querySelectorAll('.js-read-more');
+        this.readLessButtons = this.querySelectorAll('.js-read-less');
+        this.descriptionShort = document.querySelector('.product-description-short');
+        this.descriptionFull = document.querySelector('.product-description-full');
       }
 
       cartUpdateUnsubscriber = undefined;
@@ -26,6 +30,24 @@ if (!customElements.get('product-info')) {
           this.updateQuantityRules(event.data.sectionId, event.data.html);
           this.setQuantityBoundries();
         });
+
+        // Add click event handlers to expand text
+        this.readMoreButtons.forEach(function(button) {
+          button.addEventListener('click', function(event) {
+            event.preventDefault();
+            this.descriptionFull.style.display = 'block';
+            this.descriptionShort.style.display = 'none';
+          }.bind(this));
+        }.bind(this));
+        
+        // Add click event handlers to collapse text
+        this.readLessButtons.forEach(function(button) {
+          button.addEventListener('click', function(event) {
+            event.preventDefault();
+            this.descriptionFull.style.display = 'none';
+            this.descriptionShort.style.display = 'block';
+          }.bind(this));
+        }.bind(this));
       }
 
       disconnectedCallback() {

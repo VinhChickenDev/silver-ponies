@@ -444,6 +444,25 @@
                     {{ block.settings.text | default: block.settings.page.title | escape }}
                   </button>
                 </modal-opener>
+              {%-  when 'product_extra_info' %}
+                {%- if block.settings.product_extra_info_content != blank -%}
+                  <div class="product__extra-info" {{ block.shopify_attributes }}>
+                    {% if block.settings.product_extra_info_content.size > 200 %}
+                      <div class="rte product-description-short">
+                        {{ block.settings.product_extra_info_content | truncate: 200, ". . . " }}
+                        <a class="js-read-more" href="#">Read More</a>
+                      </div>
+                      <div class="rte product-description-full" style="display:none;">
+                        {{ block.settings.product_extra_info_content }}
+                        <a class="js-read-less" href="#">Read Less</a>
+                      </div>
+                    {% else %}
+                      <div class="rte">
+                        {{ block.settings.product_extra_info_content }}
+                      </div>
+                    {% endif %}
+                  </div>
+                {%- endif -%}
               {%- when 'share' -%}
                 {% liquid
                   assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
@@ -1195,6 +1214,17 @@
           "id": "page",
           "type": "page",
           "label": "t:sections.main-product.blocks.popup.settings.page.label"
+        }
+      ]
+    },
+    {
+      "type": "product_extra_info",
+      "name": "Product Extra Info",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "product_extra_info_content",
+          "label": "Content"
         }
       ]
     },
