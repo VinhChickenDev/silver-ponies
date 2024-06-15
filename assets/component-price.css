@@ -21,6 +21,14 @@
 .price .price-item {
   display: inline-block;
   margin: 0 1rem 0 0;
+
+}
+
+/* Change the color (something vivid, like red) of the Price on the product detail page - a.k.a. PDP - */
+.product .price .price-item.price-item--sale {
+  font-weight: 700;
+  color: #912E38;
+  font-size: 24px;
 }
 
 .price__regular .price-item--regular {
