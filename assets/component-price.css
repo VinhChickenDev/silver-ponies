@@ -25,7 +25,8 @@
 }
 
 /* Change the color (something vivid, like red) of the Price on the product detail page - a.k.a. PDP - */
-.product .price .price-item.price-item--sale {
+.product .price .price__sale .price-item.price-item--sale,
+.product .price .price__regular .price-item.price-item--regular {
   font-weight: 700;
   color: #912E38;
   font-size: 24px;
