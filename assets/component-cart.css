@@ -224,3 +224,12 @@ cart-items {
     gap: 1rem;
   }
 }
+
+.cart__remove-all-items {
+  width: 100%;
+}
+
+.cart__remove-all-items-link {
+  text-decoration: none;
+  color: inherit;
+}

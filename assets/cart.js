@@ -10,7 +10,38 @@ class CartRemoveButton extends HTMLElement {
   }
 }
 
-customElements.define('cart-remove-button', CartRemoveButton);
+class CartRemoveAllItems extends HTMLElement {
+  constructor() {
+    super();
+
+    this.addEventListener('click', (event) => {
+      event.preventDefault();
+      // Make the fetch request with the provided options
+      fetch(`${routes.cart_clear_url}`)
+        .then(response => {
+          // Check if the request was successful
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          // Parse the response as JSON
+          console.log('Cart cleared');
+          // Reload the page or update cart contents as needed
+          location.reload();
+          return response.json();
+        })
+        .then(data => {
+          // Handle the JSON data
+          console.log(data);
+        })
+        .catch(error => {
+          // Handle any errors that occurred during the fetch
+          // console.error('Fetch error:', error);
+        });
+    });
+  }
+}
+
+customElements.define('cart-remove-all-items', CartRemoveAllItems);
 
 class CartItems extends HTMLElement {
   constructor() {
